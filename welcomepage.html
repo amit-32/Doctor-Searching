@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME TO OUR SERVICE</title>
+    <link rel="icon" href="https://t3.ftcdn.net/jpg/03/24/58/44/360_F_324584485_qtdluDzmBNkJvmntEPlNeG1htwPktgCa.jpg">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-image 0.5s ease-in-out;
+            text-align: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+            z-index: 1;
+        }
+
+        .hero {
+            z-index: 2;
+            position: relative;
+            padding: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Adds shadow for readability */
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Adds shadow for readability */
+        }
+
+        .login-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            border-radius: 0.25rem;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.4rem 1rem;
+            border-radius: 0.25rem;
+            background-color: #0056b3;
+        }
+
+        nav ul li a:hover {
+            background-color: #004080;
+        }
+
+        footer {
+            background-color: #0b3d91;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            z-index: 2;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        .homepage {
+            display: none;
+        }
+
+        .dropdown-content a {
+            color: black;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Dark overlay to enhance text readability -->
+    <div class="overlay"></div>
+
+    <div class="hero">
+        <h1>Find the Best Doctors Near You</h1>
+        <p>Your health is our priority. Search for top-rated doctors in your area.</p>
+    </div>
+
+    <div class="login-container">
+        <nav>
+            <ul>
+                <li class="dropdown">
+                    <a href="#" role="button">LOGIN</a>
+                    <div class="dropdown-content">
+                        <a href="http://localhost:8084/doctorfinding/adminlogin.html" class="admin">Administrator</a>
+                        <a href="doctor.html" class="doctor">Doctor</a>
+                        <a href="userlogin.html" class="patient">User</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="homepage">
+        <img class="mySlides" src="about1.jpg" alt="Slide 1" loading="lazy">
+        <img class="mySlides" src="https://img.freepik.com/free-photo/senior-doctor-talking-with-patient-office_23-2147896638.jpg?w=996&t=st=1726883129~exp=1726883729~hmac=99f5c1db055aa79f1ea74b8c230bcfd95a01b9218b82ef562ae067dc6c59516f" alt="Slide 2" loading="lazy">
+        <img class="mySlides" src="hero1.jpg" alt="Slide 3" loading="lazy">
+        <img class="mySlides" src="https://img.freepik.com/free-photo/senior-doctor-listening-patient-closely_23-2147896781.jpg?w=1060&t=st=1726883693~exp=1726884293~hmac=4d008a69b754e1d97253b9af771da98d134eecffd0b32108e9c5091b022a520b" alt="Slide 4" loading="lazy">
+    </div>
+
+    <script>
+        let myIndex = 0;
+
+        function slideshow() {
+            const slides = document.getElementsByClassName("mySlides");
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            myIndex++;
+            if (myIndex > slides.length) {
+                myIndex = 1;
+            }
+
+            document.body.style.backgroundImage = `url(${slides[myIndex - 1].src})`;
+            setTimeout(slideshow, 2000);
+        }
+
+        window.onload = function () {
+            slideshow();  // Start the slideshow when the page loads
+        };
+    </script>
+
+    <footer>
+        <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+    </footer>
+</body>
+
+</html>
