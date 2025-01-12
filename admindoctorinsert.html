@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Doctor Registration</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f0f8ff; /* Light, calming blue */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 20px;
+            }
+
+            form {
+                background-color: #ffffff;
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                width: 100%;
+            }
+
+            h2 {
+                text-align: center;
+                color: #2c3e50;
+                margin-bottom: 30px;
+                font-size: 28px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            label {
+                font-size: 16px;
+                color: #34495e;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="password"],
+            select {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border: 1px solid #bdc3c7;
+                border-radius: 6px;
+                font-size: 16px;
+                color: #2c3e50;
+                background-color: #ecf0f1;
+                transition: border-color 0.3s ease;
+                box-sizing: border-box;
+            }
+
+            input[type="text"]:focus,
+            input[type="number"]:focus,
+            input[type="email"]:focus,
+            input[type="tel"]:focus,
+            input[type="password"]:focus,
+            select:focus {
+                border-color: #3498db;
+                outline: none;
+                background-color: #fff;
+            }
+
+            .radio-group {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+
+            .radio-group label {
+                font-size: 16px;
+                color: #34495e;
+                margin-right: 15px;
+                cursor: pointer;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #2980b9;
+            }
+
+            .error {
+                color: red;
+                font-size: 14px;
+            }
+
+            @media (max-width: 600px) {
+                form {
+                    padding: 25px;
+                }
+
+                h2 {
+                    font-size: 22px;
+                }
+
+                button {
+                    font-size: 16px;
+                }
+            }
+            .back-btn {
+                display: block;
+                width: 150px;
+                margin: 20px auto;
+                padding: 10px;
+                text-align: center;
+                background-color: #4CAF50;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            .back-btn:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="admindoctorinsert.jsp" method="POST">
+            <h2>Doctor Registration Through Admin</h2>
+
+            <label for="name">Full Name: <span>*</span></label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="gender">Gender: <span>*</span></label>
+            <div class="radio-group">
+                <label for="male">
+                    <input type="radio" id="male" name="gender" value="Male" required> Male
+                </label>
+                <label for="female">
+                    <input type="radio" id="female" name="gender" value="Female" required> Female
+                </label>
+                <label for="other">
+                    <input type="radio" id="other" name="gender" value="Other" required> Other
+                </label>
+            </div>
+
+            <label for="spec">Specialization: <span>*</span></label>
+            <select name="spec" id="spec" required>
+                <option value="">Select Specialization</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Orthopaedist">Orthopaedist</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Gastroenterologist">Gastroenterologist</option>
+                <option value="Paediatrician">Paediatrician</option>
+            </select>
+
+            <label for="Experience">Experience: <span>*</span></label>
+            <input type="text" id="Experience" name="Experience" placeholder="Years of Experience" required>
+
+            <label for="mobile">Mobile Number: <span>*</span></label>
+            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required pattern="[0-9]{10}">
+
+            <label for="email">Email: <span>*</span></label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="username">Username: <span>*</span></label>
+            <input type="text" id="username" name="username" placeholder="Choose a username" required>
+
+            <label for="password">Password: <span>*</span></label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <label for="age">Age: <span>*</span></label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required min="0">
+
+            <label for="security">What is Your Father's Name: <span>*</span></label>
+            <input type="password" id="security" name="security" placeholder="Enter your Father's Name" required>
+
+            <button type="submit">Insert</button>
+            
+            <a href="doctordatabase.jsp" class="back-btn">Go Back</a>
+
+        </form>
+    </body>
+</html>
