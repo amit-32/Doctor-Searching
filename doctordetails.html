@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Specializations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background-image 1s ease-in-out;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .appointment {
+            margin: 20px 0;
+        }
+
+        .appointment button {
+            background-color: lightseagreen;
+            font-size: 20px;
+            color: wheat;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .doctor-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .doctor-card {
+            background-color: #fff;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .doctor-card img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-card h3 {
+            margin: 10px 0;
+            font-size: 22px;
+            color: #4CAF50;
+        }
+
+        .doctor-card p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        .homepage {
+            display: none;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .doctor-card {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Our Best Doctors</h1>
+
+    <div class="appointment">
+        <a href="patientregform.html"><button>Book an Appointment</button></a> 
+    </div>
+
+    <div id="doctorList" class="doctor-container"></div>
+
+    <script>
+        // Sample data for doctors
+        const doctors = [
+            { name: "Dr. Sushant Rout", specialization: "Neurologist", image: "https://images.apollo247.in/doctors/8dcad6ee-6906-402f-a530-0a3d7ded32ec-1704301116981.png?tr=w-375,h-150,c-at_max,f-auto" },
+            { name: "Dr. Debashish Kumar Sahoo", specialization: "Dermatologist", image: "https://cdn.askapollo.com/live/images/doctors/neurosurgery/dr-amit-kumar-chanduka-neurosurgery-in-bhubaneswar.png" },
+            { name: "Dr. Amrita Aggarwal", specialization: "Orthopaedist", image: "https://cdn.askapollo.com/live/images/doctors/opthalmology/dr-deepa-c-k-opthalmology-in-bhubaneswar.png" },
+            { name: "Dr. Sheetal Dash", specialization: "Cardiologist", image: "data:image/jpeg;base64,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" },
+            { name: "Dr. Sandeep Roy", specialization: "Gastroenterologist", image: "https://cdn.askapollo.com/live/images/doctors/pulmonology/dr-kartick-chandra-jena-pulmonology-in-bhubaneswar.png" },
+            { name: "Dr. Prathap Bosh", specialization: "Paediatrician", image: "https://cdn.askapollo.com/live/images/doctors/radiology/dr-maj-retd-ajit-biswal-radiology-in-bhubaneswar.png" }
+        ];
+
+        // Function to display doctor cards
+        function displayDoctors(doctorsToDisplay) {
+            const doctorList = document.getElementById("doctorList");
+            doctorList.innerHTML = ""; // Clear previous cards
+
+            doctorsToDisplay.forEach(doctor => {
+                const doctorCard = document.createElement("div");
+                doctorCard.classList.add("doctor-card");
+
+                doctorCard.innerHTML = `
+                    <img src="${doctor.image}" alt="${doctor.name}">
+                    <h3>${doctor.name}</h3>
+                    <p>${doctor.specialization}</p>
+                `;
+
+                doctorList.appendChild(doctorCard);
+            });
+        }
+
+        // Initial display of all doctors
+        displayDoctors(doctors);
+    </script>
+
+    <div class="homepage">
+        <img class="mySlides" src="about1.jpg" alt="Slide 1">
+        <img class="mySlides" src="breadcumb1.jpg" alt="Slide 2">
+        <img class="mySlides" src="video.jpg" alt="Slide 3">
+        
+    </div>
+
+    <script>
+        var myIndex = 0;
+        slideshow();
+
+        function slideshow() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex >= slides.length) {
+                myIndex = 0;
+            }
+            document.body.style.backgroundImage = "url('" + slides[myIndex].src + "')";
+            slides[myIndex].style.display = "block";
+            setTimeout(slideshow, 2000); // Change image every 3 seconds
+        }
+    </script>
+
+</body>
+
+</html>
