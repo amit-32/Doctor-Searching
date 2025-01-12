@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #080710;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url("https://img.freepik.com/free-vector/call-doctor-concept-doctors-answer-patient-questions-phone_1150-50289.jpg?w=1060&t=st=1726854426~exp=1726855026~hmac=45bb4f0e4e28e40b2b245338650b29567cd1fc7e33bb2a448eafd5897d73f0fc");
+            background-size: cover;
+            backdrop-filter: blur(5px);
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .background .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: move 6s ease-in-out infinite alternate;
+        }
+
+        .shape:first-child {
+            background: linear-gradient(135deg, #1845ad, #23a2f6);
+            width: 300px;
+            height: 300px;
+            left: -150px;
+            top: -150px;
+        }
+
+        .shape:last-child {
+            background: linear-gradient(135deg, #ff512f, #f09819);
+            width: 200px;
+            height: 200px;
+            right: -100px;
+            bottom: -100px;
+            animation-duration: 8s;
+        }
+
+        @keyframes move {
+            to {
+                transform: translateY(30px) translateX(30px) rotate(20deg);
+            }
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form h3 {
+            color: black;
+            font-size: 28px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-size: 14px;
+            color: firebrick;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 0 15px;
+            color: whitesmoke;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input::placeholder {
+            color: #d1d1d1;
+        }
+
+        input:focus {
+            background-color: black;
+        }
+
+        button {
+            margin-top: 30px;
+            width: 100%;
+            background-color: #ff512f;
+            color: #fff;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f09819;
+            transform: translateY(-5px);
+        }
+
+        .social {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .social a {
+            text-align: center;
+            width: 48%;
+            background-color: rgba(255, 255, 255, 0.27);
+            padding: 10px;
+            border-radius: 5px;
+            color: slateblue;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .social a:hover {
+            background-color: palevioletred;
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .links a {
+            color: #ff512f;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .links a:hover {
+            color: #f09819;
+        }
+
+        .top {
+            font-family: 'Brush Script MT', cursive;
+            color: black;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 48px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .shape:first-child {
+                width: 200px;
+                height: 200px;
+                left: -100px;
+                top: -100px;
+            }
+
+            .shape:last-child {
+                width: 150px;
+                height: 150px;
+                right: -75px;
+                bottom: -75px;
+            }
+
+            form {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top {
+                font-size: 36px;
+            }
+
+            form {
+                padding: 20px;
+            }
+
+            button {
+                padding: 12px 0;
+            }
+
+            .social a {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div>
+        <div class="top">User Login</div>
+        <form action="userv.jsp">
+            <h3>Login</h3>
+
+            <label for="username">Username<span>*</span></label>
+            <input type="text" id="username" name="username" placeholder="Username or Email" required>
+
+            <label for="password">Password<span>*</span></label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+
+            <button type="submit">Log In</button>
+
+            <div class="social">
+                <a href="userregister.html">Sign-up</a>
+                <a href="userforget.html">Forget Password</a>
+            </div>
+
+            <div class="links">
+                <a href="adminlogin.html">Administrator Login</a>
+                <a href="welcomepage.html">Back</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
