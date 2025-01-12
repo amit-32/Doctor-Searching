@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password Reset</title>
+        <style>
+            /* General reset for margins and paddings */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Apply a soothing gradient background to the body */
+            body {
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(135deg, #84fab0, #8fd3f4);
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            /* Styling for the container */
+            .container {
+                background-color: white;
+                padding: 2rem;
+                border-radius: 12px;
+                box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 380px;
+                animation: fadeIn 1s ease-in-out;
+                position: relative;
+            }
+
+            /* Heading style */
+            h2 {
+                text-align: center;
+                color: #4e54c8;
+                margin-bottom: 20px;
+                font-size: 1.9rem;
+                letter-spacing: 1px;
+                font-weight: bold;
+            }
+
+            /* Styling for the mobile number display */
+            .mobile-display {
+                text-align: center;
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+                font-weight: bold;
+                color: #333;
+            }
+
+            /* Styling the form */
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem; /* Add space between form elements */
+            }
+
+            label {
+                font-size: 1rem;
+                color: #666;
+                font-weight: bold;
+                transition: all 0.4s ease;
+            }
+
+            /* Styling the input fields */
+            input[type="password"] {
+                width: 100%;
+                padding: 12px;
+                font-size: 1rem;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                outline: none;
+                background: #f9f9f9;
+                transition: all 0.4s ease;
+            }
+
+            input[type="password"]:focus {
+                border-color: #4e54c8;
+                box-shadow: 0 5px 15px rgba(110, 69, 226, 0.2);
+                background-color: #fff;
+            }
+
+            /* Button styles */
+            button {
+                padding: 12px;
+                font-size: 1.1rem;
+                color: white;
+                background: linear-gradient(45deg, #4e54c8, #8f94fb);
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            /* Button hover animation */
+            button:hover {
+                background: linear-gradient(45deg, #6c78e7, #a1a7ff);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(110, 69, 226, 0.3);
+            }
+
+            /* Animation for container fade-in */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(40px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Media query for responsiveness */
+            @media (max-width: 768px) {
+                .container {
+                    width: 85%;
+                    padding: 1.5rem;
+                }
+                h2 {
+                    font-size: 1.7rem;
+                }
+            }
+        </style>
+
+        <script>
+            // Function to get query parameters
+            function getQueryParam(param) {
+                let urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            window.onload = function () {
+                // Get 'mobile' parameter from URL and display it or use it
+                let mobile = getQueryParam('mobile');
+                if (mobile) {
+                    document.getElementById('mobileDisplay').textContent = mobile;
+                    document.getElementById('mobileInput').value = mobile; // Set the mobile in hidden input
+                }
+            };
+        </script>
+
+    </head>
+    <body>
+        <div class="container">
+            <h2>Update Password</h2>
+            
+            <!-- Mobile number display -->
+            <p class="mobile-display">Your registered mobile number is: <span id="mobileDisplay"></span></p>
+            
+            <!-- Form action points to the JSP page, such as updatePassword.jsp -->
+            <form action="docpassupdate.jsp" method="post">
+                <!-- Hidden input to store mobile number -->
+                <input type="hidden" name="mobile" value="" id="mobileInput">
+                
+                <!-- New password field -->
+                <label for="n_password">New Password:</label>
+                <input type="password" id="n_password" name="n_password" required>
+                
+                <!-- Confirm new password field -->
+                <label for="c_password">Confirm New Password:</label>
+                <input type="password" id="c_password" name="c_password" required>
+                
+                <!-- Submit button -->
+                <button type="submit">Update Password</button>
+            </form>
+        </div>
+    </body>
+</html>
