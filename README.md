@@ -1,2 +1,2 @@
 # Doctor-Searching
-Here I designed such a website that will find doctor near you and allow you for appointment.
+Here I designed a website that can be used for "Doctor Management and user Appointment" in a simple and efficient way, it allows the user to book an appointment with the doctors (according to their specialization), also provides information to doctor that a user has a appointment with you(doctor). It also has a administrator option which allows only the admin to do any kind of changes from user data to doctor's data.
